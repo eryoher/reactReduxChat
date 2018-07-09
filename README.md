@@ -2,7 +2,6 @@
 
 # React-redux-socketio-chat
 
-![alt tag](ReadmeVideo.gif)
 To see the live version of the app go to http://slackclone.herokuapp.com
 
 ## Use Guide

@@ -4,7 +4,7 @@ import fetch from 'isomorphic-fetch';
 import cookie from 'react-cookie';
 
 export function receiveAuth() {
-  const user = cookie.load('username');
+  const user = cookie.load('userSession');
   return {
     type: types.AUTH_LOAD_SUCCESS,
     user
@@ -12,7 +12,8 @@ export function receiveAuth() {
 }
 
 export function checkAuth() {
-  if (cookie.load('username')) {
+
+  if (cookie.load('userSession')) {
     return true;
   }
   return false;
@@ -47,13 +48,13 @@ function receiveSignOut() {
 }
 
 export function signOut() {
+  console.log('llego aca');
   return dispatch => {
     dispatch(requestSignOut())
     return fetch('/api/signout')
       .then(response => {
         if(response.ok) {
-          cookie.remove('username')
-          dispatch(receiveSignOut())
+          cookie.remove('userSession')
           browserHistory.push('/')
         }
       })
@@ -72,9 +73,10 @@ export function signUp(user) {
       })
       .then(response => {
         if(response.ok) {
-          cookie.save('username', user.username)
+          cookie.save('userSession', { 'username' : user.username, id: Symbol(user.username) })
           dispatch(receiveUser(user.username));
           browserHistory.push('/chat');
+        }else{
         }
       })
       .catch(error => {throw error});
@@ -109,9 +111,11 @@ export function signIn(user) {
       })
       .then(response => {
         if(response.ok) {
-          cookie.save('username', user.username)
+          cookie.save('userSession', { 'username' : user.username, id: Symbol(user.username) })
           dispatch(receiveSignIn(user.username));
           browserHistory.push('/chat');
+        }else{
+          alert('Datos Incorrectos');
         }
       })
       .catch(error => {throw error});

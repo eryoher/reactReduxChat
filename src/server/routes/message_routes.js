@@ -6,7 +6,7 @@ module.exports = function(router) {
 
   // query DB for ALL messages
   router.get('/messages', function(req, res) {
-    Message.find({}, {id: 1, channelID: 1, text: 1, user: 1, time: 1, _id: 0}, function(err, data) {
+    Message.find({}, {id: 1, channelID: 1, text: 1, user: 1, time: 1, _id: 0, video:1}, function(err, data) {
       if(err) {
         console.log(err);
         return res.status(500).json({msg: 'internal server error'});
@@ -17,7 +17,7 @@ module.exports = function(router) {
 
   // query DB for messages for a specific channel
   router.get('/messages/:channel', function(req, res) {
-    Message.find({channelID: req.params.channel}, {id: 1, channelID: 1, text: 1, user: 1, time: 1, _id: 0}, function(err, data) {
+    Message.find({channelID: req.params.channel}, {id: 1, channelID: 1, text: 1, user: 1, time: 1, _id: 0, video:1}, function(err, data) {
       if(err) {
         console.log(err);
         return res.status(500).json({msg: 'internal server error'});

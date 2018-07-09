@@ -19,19 +19,24 @@ import webpackConfig from '../../webpack.config.dev'
 const compiler = webpack(webpackConfig);
 import User from './models/User.js';
 import passport from 'passport';
-require('../../config/passport')(passport);
 import SocketIo from 'socket.io';
 const app = express();
+
+
+require('../../config/passport')(passport);
 //set env vars
 process.env.MONGOLAB_URI = process.env.MONGOLAB_URI || 'mongodb://localhost/chat_dev';
 process.env.PORT = process.env.PORT || 3000;
 
 // connect our DB
-mongoose.connect(process.env.MONGOLAB_URI);
+mongoose.connect(process.env.MONGOLAB_URI,{
+  useMongoClient: true
+});
 
 process.on('uncaughtException', function (err) {
   console.log(err);
 });
+
 app.use(cors());
 app.use(passport.initialize());
 
@@ -39,12 +44,14 @@ app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
   publicPath: webpackConfig.output.publicPath
 }));
+
 app.use(require('webpack-hot-middleware')(compiler));
 
 //load routers
 const messageRouter = express.Router();
 const usersRouter = express.Router();
 const channelRouter = express.Router();
+
 require('./routes/message_routes')(messageRouter);
 require('./routes/channel_routes')(channelRouter);
 require('./routes/user_routes')(usersRouter, passport);
@@ -62,18 +69,13 @@ app.get('/*', function(req, res) {
     const initialState = {
       auth: {
         user: {
-          username: 'tester123',
+          username: 'tester',
           id: 0,
           socketID: null
         }
       }
     }
     const store = configureStore(initialState);
-    // console.log(redirectLocation);
-    // if(redirectLocation) {
-    //   return res.status(302).end(redirectLocation);
-    // }
-
 
     if(err) {
       console.error(err);
@@ -85,7 +87,7 @@ app.get('/*', function(req, res) {
     }
     const InitialView = (
       <Provider className="root" store={store}>
-        <div style={{height: '100%'}}>
+        <div >
           <RouterContext {...renderProps} />
           {process.env.NODE_ENV !== 'production' && <DevTools />}
         </div>
@@ -114,15 +116,16 @@ function renderFullPage(html, initialState) {
     <!doctype html>
     <html lang="en">
       <head>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
-        <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+        <link rel="icon" href="./favicon.ico?v=2" type="image/x-icon" />
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-        <title>React Redux Socket.io Chat</title>
+
+        <title>React Chat </title>
       </head>
       <body>
-        <container id="react">${html}</container>
+        <div id="react">${html}</div>
         <script>
           window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
         </script>

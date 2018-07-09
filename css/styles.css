@@ -1,0 +1,123 @@
+.chat-container{
+  margin: 0px;
+  padding: 0px;
+  height: 800px;
+  width: 100%;
+}
+
+.video-detail .details{
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.chat-container-header{
+  background: #FFFFFF;
+  color: black;
+  flex-grow: 0;
+  order: 0;
+  font-size: 2.3em;
+  padding-left: 0.2em;
+}
+
+.chat-messages-list{
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.chat-channels-buttons{
+  background-color: #e5ddd5;
+  border:0px;
+}
+
+span.chat-channels-buttons {
+  text-align: 'left';
+  cursor: 'pointer';
+  margin-left: '2em';
+}
+
+.btn-custom:hover {
+    color: #fff;
+    background-color: #c5c3c3;
+    border-color: #ddd;
+}
+
+.chat-channels-buttons-label{
+  text-align: 'left';
+  cursor: 'pointer';
+  margin-left: '2em';
+}
+
+.chat-channels{
+    float: none;
+    margin: 0 auto;
+    margin-right: 0px;
+    margin-left: 80px;
+    padding-right: 0px;
+    padding-left: 0px;
+    background-color: #e5ddd5;
+}
+
+.chat-footer{
+    font-size: 1em;
+    left: 21.5rem;
+    color: #000000;
+    width: 100%;
+    opacity: 0.5;
+    /* border: 1px solid; */
+    height: 50px;
+}
+
+.contenedor {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+/* Darker chat contenedor */
+.darker {
+    border-color: #ccc;
+    background-color: #ddd;
+}
+.darker-video {
+    border-color: #ccc;
+    background-color: #ddd;
+    margin-left: 50%;
+}
+
+/* Clear floats */
+.contenedor::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Style images */
+.contenedor img {
+    float: left;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+/* Style the right image */
+.contenedor img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+}
+
+/* Style time text */
+.time-right {
+    float: right;
+    color: #aaa;
+}
+
+/* Style time text */
+.time-left {
+    float: left;
+    color: #999;
+}

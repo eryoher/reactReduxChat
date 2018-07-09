@@ -1,22 +1,49 @@
 import React, { PropTypes } from 'react';
+import VideoDetail from './video_detail';
 
 export default class MessageListItem extends React.Component {
   static propTypes = {
     message: PropTypes.object.isRequired
   };
+
   handleClick(user) {
     this.props.handleClickOnUser(user);
   }
+
   render() {
-    const { message } = this.props;
+    const { message, user } = this.props;
+    var divVideo = '';
+    var classDiv = 'contenedor';
+    var classVideo = 'video-detail offset-md-1 col-md-6 contenedor';
+    
+    if( message.user.username == user.username ){
+      classDiv = 'contenedor darker';
+      classVideo = 'video-detail offset-md-1 col-md-6 contenedor darker-video';
+    }
+
+    if (message.video) {
+      divVideo = (
+        <div className="search_bar">
+          <VideoDetail video={message.video.selectedVideo}
+            customClass={classVideo}  />
+        </div>
+      );
+
+    }else{
+      divVideo = (
+        <div className={classDiv}>
+          {/* <img src="/w3images/bandmember.jpg" alt="Avatar"> */}
+          <b> {message.user.username} </b>
+          <p>{message.text}</p>
+          <span className="time-right">{message.time}</span>
+        </div>
+      );
+    }
+
     return (
-      <li>
-        <span>
-          <b style={{color: '#66c'}}><button style={{background: 'Transparent',backgroundRepeat: 'noRepeat', border: 'none', cursor: 'pointer', overflow: 'hidden', outline: 'none'}} onClick={this.handleClick.bind(this, message.user)}>{message.user.username}</button></b>
-          <i style={{color: '#aad', opacity: '0.8'}}>{message.time}</i>
-        </span>
-        <div style={{clear: 'both', paddingTop: '0.1em', marginTop: '-1px', paddingBottom: '0.3em'}}>{message.text}</div>
-      </li>
+        <div>
+          {divVideo}
+        </div>
     );
   }
 }

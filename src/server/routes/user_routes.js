@@ -18,11 +18,13 @@ module.exports = function loadUserRoutes(router, passport) {
     failureRedirect: '/'
   }));
 
-  router.post('/sign_up', passport.authenticate('local-signup', { session: false}), function(req, res) {
+  router.post('/sign_up', passport.authenticate('local-signup',
+  { session: false}), function(req, res) {
     res.json(req.user);
   });
 
   router.post('/sign_in', passport.authenticate('local-login', { session: false}), function(req, res) {
+    console.log(req, res, 'zzz');
     res.json(req.user);
   });
 

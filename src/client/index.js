@@ -1,4 +1,5 @@
-import '../common/css/chatapp.css';
+import '../../css/styles.css';
+import '../../css/chatapp.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { browserHistory } from 'react-router';
@@ -15,7 +16,7 @@ const rootElement = document.getElementById('react');
 
 ReactDOM.render(
   <Provider store={store}>
-    <div style={{height: '100%'}}>
+    <div>
       <Router children={routes} history={browserHistory} />
       {process.env.NODE_ENV !== 'production' && <DevTools />}
     </div>

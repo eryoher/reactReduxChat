@@ -90,59 +90,69 @@ class SignUp extends Component {
   }
   render() {
     return (
-      <div>
-        <header style={{display: 'flex', justifyContent: 'center', background: '#000000', color: '#FFFFFF', flexGrow: '0', order: '0'}}>
-        Sign Up
-        </header>
-        <main style={{display: 'flex', justifyContent: 'center'}}>
-          <form onSubmit={::this.handleSubmit} >
-            <section style={{height: '6em'}}>
-              <Input
-                label="Username"
-                ref="usernameInput"
-                type="text"
-                help={this.validateUsername() === 'error' && 'A user with that name already exists!'}
-                bsStyle={this.validateUsername()}
-                hasFeedback
-                name="username"
-                autoFocus="true"
-                placeholder="Enter username"
-                value={this.state.username}
-                onChange={::this.handleChange}
-              />
-            </section>
-            <section style={{height: '6em'}}>
-              <Input
-                label="Password"
-                ref="passwordInput"
-                type="password"
-                name="password"
-                value={this.state.password}
-                placeholder="Enter password"
-                onChange={::this.handleChange}
-              />
-            </section>
-            <section style={{height: '6em'}}>
-              <Input
-                label="Confirm Password"
-                ref="confirmPasswordInput"
-                help={this.validateConfirmPassword() === 'error' && 'Your password doesn\'t match'}
-                type="password"
-                name="confirm-password"
-                placeholder="Enter password again" value={this.state.confirmPassword}
-                onChange={::this.handleChange}
-              />
-            </section>
-            <Button
-              disabled={this.validateUsername() === 'error' || this.validateConfirmPassword() === 'error' && true}
-              bsStyle="success"
-              style={{width: '100%', height: '4rem', marginTop: '2rem'}}
-              onClick={::this.handleSubmit}
-              type="submit">
-              <p style={{color: 'white', margin: '0', padding: '0', fontSize: '1.5em'}} >Sign Up</p>
-            </Button>
-          </form>
-        </main>
+      <div className="container">
+        <div className="col-sm-6 mx-auto">
+          <div className="card mt-5">
+            <div className="card-body">
+              <h1 className="text-center">
+                <span className="fa fa-sign-in"></span> Signup
+              </h1>
+              <form onSubmit={::this.handleSubmit} >
+                <div className="form-group">
+                  <Input
+                    className="form-control"
+                    label="Username"
+                    ref="usernameInput"
+                    type="text"
+                    help={this.validateUsername() === 'error' && 'A user with that name already exists!'}
+                    bsStyle={this.validateUsername()}
+                    hasFeedback
+                    name="username"
+                    autoFocus="true"
+                    placeholder="Enter username"
+                    value={this.state.username}
+                    onChange={::this.handleChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <Input
+                    className="form-control"
+                    label="Password"
+                    ref="passwordInput"
+                    type="password"
+                    name="password"
+                    value={this.state.password}
+                    placeholder="Enter password"
+                    onChange={::this.handleChange}
+                  />
+
+                </div>
+                <div className="form-group">
+                  <Input
+                    className="form-control"
+                    label="Confirm Password"
+                    ref="confirmPasswordInput"
+                    help={this.validateConfirmPassword() === 'error' && 'Your password doesn\'t match'}
+                    type="password"
+                    name="confirm-password"
+                    placeholder="Enter password again" value={this.state.confirmPassword}
+                    onChange={::this.handleChange}
+                  />
+                </div>
+                <Button
+                  disabled={this.validateUsername() === 'error' || this.validateConfirmPassword() === 'error' && true}
+                  className="btn btn-dark btn-lg"
+                  onClick={::this.handleSubmit}
+                  type="submit">
+                  Sign Up
+                </Button>
+              </form>
+              <div className="text-center">
+                <p>Already have an account? <a href="/">Login</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

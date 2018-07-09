@@ -140,6 +140,7 @@ export function usernameValidationList() {
 }
 
 export function createMessage(message) {
+ // console.log('Mensaje to Database', message);
   return dispatch => {
     dispatch(addMessage(message))
     return fetch('/api/newmessage', {
