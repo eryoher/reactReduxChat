@@ -15,7 +15,7 @@ export default class MessageListItem extends React.Component {
     var divVideo = '';
     var classDiv = 'contenedor';
     var classVideo = 'video-detail offset-md-1 col-md-6 contenedor';
-    
+
     if( message.user.username == user.username ){
       classDiv = 'contenedor darker';
       classVideo = 'video-detail offset-md-1 col-md-6 contenedor darker-video';
@@ -25,7 +25,8 @@ export default class MessageListItem extends React.Component {
       divVideo = (
         <div className="search_bar">
           <VideoDetail video={message.video.selectedVideo}
-            customClass={classVideo}  />
+            customClass={classVideo} username = {message.user.username} />
+
         </div>
       );
 
