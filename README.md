@@ -2,8 +2,6 @@
 
 # React-redux-socketio-chat
 
-To see the live version of the app go to http://slackclone.herokuapp.com
-
 ## Use Guide
 
 First off, clone the repository and then `cd react-redux-socketio-chat`and `npm install`
@@ -52,6 +50,7 @@ And then point your browser to `localhost:3000`
 * Erikras' universal redux example: https://github.com/erikras/react-redux-universal-hot-example
 * The facebook react flux-chat example: https://github.com/facebook/flux/tree/master/examples/flux-chat
 * The awesome community of reactiflux https://discordapp.com/channels/102860784329052160/102860784329052160
+* Chat reat redux https://github.com/raineroviir/react-redux-socketio-chat
 
 ## Todos
 * small profile page for users
